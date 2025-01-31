@@ -18,11 +18,17 @@ class FAQ(models.Model):
     answer_bn = RichTextField(blank=True, null=True, verbose_name=_("Answer in Bengali"))
     
     def get_translated_question(self, lang_code):
-        # TODO: Implement transalation
+        if lang_code == 'hi':
+            return self.question_hi if self.question_hi else self.question
+        elif lang_code == 'bn':
+            return self.question_bn if self.question_bn else self.question
         return self.question
     
     def get_translated_answer(self, lang_code):
-        # TODO: Implement transalation
+        if lang_code == 'hi':
+            return self.answer_hi if self.answer_hi else self.answer
+        elif lang_code == 'bn':
+            return self.answer_bn if self.answer_bn else self.answer
         return self.answer
     
     def __str__(self):
